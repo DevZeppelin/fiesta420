@@ -13,7 +13,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Fiesta 420 - 2024",
+  title: "Fiesta 420 (2024)",
   description: "By DevZeppelin",
 };
 
