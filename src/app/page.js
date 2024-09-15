@@ -85,7 +85,7 @@ export default function Home() {
         <ol className="list-inside space-y-3 list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li>Pague su cuota a tiempo para garantizar la integridad de la fiesta</li>
           <li>Espere al 21 de diciembre para fortalecer la unión de este gran grupo</li>
-          <li>Nos vemos en "La Magnolia" (Guardia vieja y Perón, Luján)</li>
+          <li>Nos vemos en La Magnolia (Guardia vieja y Perón, Luján)</li>
         </ol>
 
         <Image
