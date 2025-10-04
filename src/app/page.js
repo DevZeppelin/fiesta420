@@ -6,15 +6,6 @@ import React, { useState, useEffect } from "react";
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({});
   const [mounted, setMounted] = useState(false);
-  const [showMisil, setShowMisil] = useState(false);
-  const [mensajeRegalo, setMensajeRegalo] = useState(false);
-
-  const handleToggle = () => {
-    setShowMisil(!showMisil);
-  };
-  const handleMensaje = () => {
-    setMensajeRegalo(!mensajeRegalo);
-  };
 
   const calculateTimeLeft = () => {
     const targetDate = new Date("December 20, 2025 13:00:00");
@@ -63,11 +54,9 @@ export default function Home() {
           <h2 className="mb-2 text-center text-2xl uppercase">
             ... Los pibes se pusieron la 10 ...
           </h2>
-          <p>
-            <h2 className="mb-2 text-center text-2xl uppercase">
-              <i>¡Habemus 420 edición 2025!</i>
-            </h2>
-          </p>
+          <h2 className="mb-2 text-center text-2xl uppercase">
+            <i>¡Habemus 420 edición 2025!</i>
+          </h2>
         </div>
         <div className="text-center mx-auto bg-black p-8 rounded-full border-2 border-neutral-50">
           <h1>Para el 20 de diciembre, 13:00 hs faltan</h1>
