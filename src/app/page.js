@@ -64,7 +64,9 @@ export default function Home() {
             ... Los pibes se pusieron la 10 ...
           </h2>
           <p>
-            <i>¡Habemus 420 edición 2025!</i>
+            <h2 className="mb-2 text-center text-2xl uppercase">
+              <i>¡Habemus 420 edición 2025!</i>
+            </h2>
           </p>
         </div>
         <div className="text-center mx-auto bg-black p-8 rounded-full border-2 border-neutral-50">
@@ -127,7 +129,6 @@ export default function Home() {
             width={300}
             height={300}
           />
-          <Image src="/alfredo.png" alt="criptobeer" width={300} height={300} />
           <Image src="/peludo.png" alt="criptobeer" width={300} height={300} />
         </section>
       </main>
