@@ -1,28 +1,117 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
 
 :root {
-  --background: #ededed;
-  --foreground: #fff;
+  --background: #05060a;
+  --foreground: #f4f5f0;
+  --acid: #7cff4f;
+  --ember: #ff3b2f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-gradient-to-r from-green-500 via-black to-red-600;
+  min-height: 100vh;
   color: var(--foreground);
-  /* background: var(--background); */
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans';
+  background: var(--background);
+  font-family: var(--font-geist-sans), "Trebuchet MS", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-h2 {
-  font-family: "Protest Guerrilla", sans-serif;
-  font-size: xx-large;
+/* Fondo: aura verde/roja difusa + textura de grano, herencia del degradé viejo verde-negro-rojo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(60% 45% at 15% 8%, rgba(124, 255, 79, 0.22), transparent 60%),
+    radial-gradient(55% 45% at 85% 92%, rgba(255, 59, 47, 0.2), transparent 60%),
+    radial-gradient(90% 60% at 50% 50%, rgba(10, 14, 10, 0.6), #05060a 75%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+/* Safari iOS: nunca menos de 16px en controles de formulario */
+input,
+select,
+textarea {
+  font-size: max(16px, 1rem);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  .acid-glow {
+    box-shadow:
+      0 0 0 1px rgba(124, 255, 79, 0.4),
+      0 0 30px rgba(124, 255, 79, 0.25),
+      inset 0 0 30px rgba(124, 255, 79, 0.06);
+  }
+  .stamp {
+    color: var(--ember);
+    border: 3px solid var(--ember);
+    border-radius: 8px;
+    padding: 0.15em 0.5em;
+    transform: rotate(-7deg);
+    font-family: var(--font-display), sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    opacity: 0.9;
+    mix-blend-mode: screen;
+  }
+  .redacted {
+    background: #0c0d12;
+    color: transparent;
+    border-radius: 3px;
+    padding: 0 0.35em;
+    user-select: none;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

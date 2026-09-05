@@ -1,143 +1,202 @@
-"use client";
-
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import Countdown from "./components/Countdown";
+import Reveal from "./components/Reveal";
+import SecretStash from "./components/SecretStash";
+import Sponsors from "./components/Sponsors";
+import Editions from "./components/Editions";
+
+const REGLAMENTO = [
+  "Pague su cuota a tiempo. La integridad de la fiesta depende de ello, y usted lo sabe.",
+  "Vaya señando. El que seña temprano duerme tranquilo; el que seña tarde duerme en la ofi del super (ya saben cual).",
+  "Espere al 19 para compartir el día. Los años pasan, la mística se mantiene. ¡Que no se muera!",
+  "El lugar se confirma cuando se confirma. No insista.",
+];
 
 export default function Home() {
-  const [timeLeft, setTimeLeft] = useState({});
-  const [mounted, setMounted] = useState(false);
-
-  const calculateTimeLeft = () => {
-    const targetDate = new Date("December 20, 2025 13:00:00");
-    const now = new Date();
-    const difference = targetDate - now;
-
-    let timeLeft = {};
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
-  };
-
-  useEffect(() => {
-    setMounted(true); // Esto asegura que la cuenta regresiva solo se muestre después de la hidratación del cliente
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [timeLeft]);
-
-  if (!mounted) {
-    return null; // Evita que el contenido se renderice en el servidor
-  }
-
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20  ">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="mx-auto animate-bounce"
-          src="/logo.png"
-          alt="420 logo"
-          width={300}
-          height={300}
-          priority
-        />
-        <div className="flex flex-col justify-content-center text-center mx-auto">
-          <h2 className="mb-2 text-center text-2xl uppercase">
-            ... Los pibes se pusieron la 10 ...
-          </h2>
-          <h2 className="mb-2 text-center text-2xl uppercase">
-            <i>¡Habemus 420 edición 2025!</i>
-          </h2>
-        </div>
-        <div className="text-center mx-auto bg-black p-8 rounded-full border-2 border-neutral-50">
-          <h1>Para el 20 de diciembre, 13:00 hs faltan</h1>
-          <div>
-            {Object.keys(timeLeft).length > 0 ? (
-              <div className="p-2 gap-2">
-                <span>{timeLeft.days} días </span>
-                <span>{timeLeft.hours} hs </span>
-                <span>{timeLeft.minutes} min </span>
-                <span>{timeLeft.seconds} seg</span>
-              </div>
-            ) : (
-              <p>¡Es el día!</p>
-            )}
-          </div>
+    <div className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center gap-24 px-5 py-16 sm:px-8 sm:py-24">
+      {/* ---------- HERO ---------- */}
+      <header className="flex flex-col items-center gap-7 text-center">
+        <div className="relative">
+          <span className="absolute left-1/2 top-1/2 -z-10 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-acid/40 blur-3xl animate-aura" />
+          <Image
+            className="animate-float drop-shadow-[0_0_35px_rgba(124,255,79,0.35)]"
+            src="/logo.png"
+            alt="420"
+            width={230}
+            height={230}
+            priority
+          />
         </div>
 
-        <ol className="list-inside space-y-3 list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li>
-            Pague su cuota a tiempo para garantizar la integridad de la fiesta
-          </li>
-          <li>
-            Espere al 20 para compartir un dia, los años pasan pero la mística
-            se mantiene
-          </li>
-          <li>Nos vemos en Finca Don Ángel (Ozamis Sur 3345, Maipú)</li>
+        <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.4em] text-acid/90">
+          <span className="h-px w-8 bg-acid/50" />
+          Edición 2026
+          <span className="h-px w-8 bg-acid/50" />
+        </div>
+
+        <h1 className="max-w-2xl text-balance text-4xl uppercase text-white sm:text-6xl">
+          Los pibes ya se están poniendo la 10
+        </h1>
+        <p className="max-w-md text-balance font-mono text-sm text-white/60">
+          Habemus 420. De nuevo. La organización vela por que esta sea la mejor de
+          todas —&nbsp;spoiler: siempre lo dice, y siempre le sale.
+        </p>
+
+        <Countdown />
+
+        <a
+          href="#sena"
+          className="group mt-2 inline-flex items-center gap-2 rounded-full bg-acid px-7 py-3 font-mono text-sm font-semibold uppercase tracking-wider text-black transition hover:bg-white"
+        >
+          Quiero ir señando
+          <span className="transition group-hover:translate-x-1">→</span>
+        </a>
+      </header>
+
+      {/* ---------- REGLAMENTO ---------- */}
+      <Reveal
+        as="section"
+        className="w-full max-w-xl rounded-3xl glass p-7 sm:p-9"
+      >
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl uppercase text-white">Reglamento</h2>
+          <span className="stamp text-sm">Vigente</span>
+        </div>
+        <ol className="space-y-4 font-mono text-sm leading-relaxed text-white/75">
+          {REGLAMENTO.map((r, i) => (
+            <li key={i} className="flex gap-4">
+              <span className="shrink-0 font-display text-lg text-acid">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span>{r}</span>
+            </li>
+          ))}
         </ol>
+      </Reveal>
 
+      {/* ---------- EL LEÓN ---------- */}
+      <Reveal as="section" className="flex flex-col items-center gap-3 text-center">
         <Image
-          className="mx-auto animate-pulse"
           src="/leon.png"
-          alt="leon 420"
-          width={300}
-          height={300}
-          priority
+          alt="el león"
+          width={200}
+          height={286}
+          className="animate-pulse drop-shadow-[0_0_25px_rgba(255,59,47,0.3)]"
         />
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+          el león sigue mirando quién seña y quién no
+        </p>
+      </Reveal>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row mx-auto">
+      {/* ---------- LUGAR ---------- */}
+      <Reveal as="section" className="flex w-full max-w-xl flex-col items-center gap-4 text-center">
+        <h2 className="text-2xl uppercase text-white">El lugar</h2>
+        <div className="w-full rounded-3xl border border-white/10 bg-white/[0.02] p-8">
+          <p className="font-mono text-4xl tracking-tight">
+            <span className="redacted">████████ ███ █████</span>
+          </p>
+          <p className="mt-4 font-mono text-sm text-white/55">
+            A confirmar. Estamos entre tres lugares y ninguno nos quiere echar
+            todavía (porque no nos conocen), así que vamos bien.
+          </p>
+          <p className="mt-2 font-mono text-xs text-white/35">
+            Coordenadas exactas llegan por el grupo, como siempre, a horario
+            argentino.
+          </p>
+          <p className="mt-2 font-mono text-xs text-white/35">
+            Cita bíblica del día: &laquo;No vomitaráis ni te golpearáis la cabeza
+            con el fondo de la pileta&raquo; <i>Derly 16. 14:28</i>
+          </p>
+        </div>
+      </Reveal>
+
+      {/* ---------- MATERIAL RESERVADO ---------- */}
+      <Reveal as="section" className="flex w-full flex-col items-center">
+        <SecretStash />
+      </Reveal>
+
+      {/* ---------- NO TE QUEDES AFUERA ---------- */}
+      <Reveal as="section" className="flex w-full max-w-xl flex-col items-center gap-4 text-center">
+        <h2 className="text-2xl uppercase text-white">No te quedes afuera</h2>
+        <Image
+          src="/pato.png"
+          alt="el pato"
+          width={220}
+          height={220}
+          className="animate-flicker rounded-2xl"
+        />
+        <p className="font-mono text-sm text-white/65">
+          El pato: Símbolo de la unidad y el desmadre
+        </p>
+        <p className="font-display text-xl text-ember">Cuac.</p>
+      </Reveal>
+
+      {/* ---------- EDICIONES ---------- */}
+      <Reveal as="section" className="flex w-full flex-col items-center gap-6">
+        <h2 className="text-2xl uppercase text-white">El legajo</h2>
+        <Editions />
+      </Reveal>
+
+      {/* ---------- SEÑA / CTA ---------- */}
+      <Reveal
+        as="section"
+        id="sena"
+        className="w-full max-w-xl scroll-mt-16 rounded-3xl glass acid-glow p-8 text-center"
+      >
+        <h2 className="text-3xl uppercase text-white">Vaya señando</h2>
+        <p className="mx-auto mt-3 max-w-sm font-mono text-sm text-white/70">
+          La seña no compra un lugar: confirma que entendiste de qué se trata
+          esto. Mismo alias de siempre. Si no lo tenés, no eras de los nuestros
+          igual.
+        </p>
+        <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-yellow-600 hover:text-black text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
             href="https://share.google/mSVZCVTKSGBqapXt1"
             target="_blank"
+            rel="noopener noreferrer"
+            className="w-full rounded-full border border-white/15 px-6 py-3 font-mono text-sm uppercase tracking-wider transition hover:border-acid hover:text-acid sm:w-auto"
           >
-            Ubicación
+            Ver zona (aprox.)
           </a>
+          <span className="font-mono text-xs text-white/40">
+            alias: <span className="text-white/70">la.mistica.420</span>
+          </span>
         </div>
+      </Reveal>
 
-        <section className="text-center mx-auto space-y-3 mt-8">
-          <h2 className="mb-4">Auspician nuevamente</h2>
-          <Image
-            src="/criptobeer.png"
-            alt="criptobeer"
-            width={300}
-            height={300}
-          />
-          <Image
-            src="/carpasmm.png"
-            alt="criptobeer"
-            width={300}
-            height={300}
-          />
-          <Image src="/peludo.png" alt="criptobeer" width={300} height={300} />
-        </section>
-      </main>
+      {/* ---------- AUSPICIANTES ---------- */}
+      <Reveal as="section" className="flex w-full flex-col items-center">
+        <Sponsors />
+      </Reveal>
 
-      <footer className="row-start-3 flex flex-col flex-wrap items-center justify-center mt-24 mb-8">
-        <div className="mb-4">
-          Hecho con ♥ por
+      {/* ---------- FOOTER ---------- */}
+      <footer className="mt-4 flex flex-col items-center gap-2 text-center font-mono text-xs text-white/40">
+        <p>
+          Hecho con ♥ por{" "}
           <a
-            className="items-center hover:underline hover:underline-offset-4 pl-1"
-            href="https://devzeppelinweb.vercel.app"
+            className="text-white/60 hover:text-acid hover:underline"
+            href="https://devzeppelinweb.ar"
             target="_blank"
             rel="noopener noreferrer"
           >
             DevZeppelin
           </a>
-        </div>
-        Link útil:
-        <a href="https://cuantocadauno.vercel.app" target="_blank">
-          App para sacar la cuenta en los asados
-        </a>
+        </p>
+        <p>
+          Link útil:{" "}
+          <a
+            className="text-white/60 hover:text-acid hover:underline"
+            href="https://cuantocadauno.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            app para sacar la cuenta en los asados
+          </a>
+        </p>
+        <p className="mt-2 text-white/25">
+          420 · edición 2026 · la mística no se confirma, se sostiene
+        </p>
       </footer>
     </div>
   );
