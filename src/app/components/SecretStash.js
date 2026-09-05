@@ -40,7 +40,7 @@ export default function SecretStash() {
           </p>
           <Image
             src="/ivan.png"
-            alt="el gordo en la vespa"
+            alt="el gordo en la vespaa"
             width={260}
             height={260}
             className="mx-auto mt-4 rounded-xl"
