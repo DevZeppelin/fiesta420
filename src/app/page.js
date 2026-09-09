@@ -160,7 +160,7 @@ export default function Home() {
             Ver zona (aprox.)
           </a>
           <span className="font-mono text-xs text-white/40">
-            alias: <span className="text-white/70">la.mistica.420</span>
+            alias: <span className="text-white/70">ianc70.uala</span>
           </span>
         </div>
       </Reveal>
