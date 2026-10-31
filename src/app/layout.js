@@ -25,7 +25,7 @@ export const metadata = {
   metadataBase: new URL("https://fiesta420.vercel.app"),
   title: "420 · Edición 2026",
   description:
-    "19 de diciembre, cerca del mediodía. Lugar clasificado (por ahora). Los años pasan, la mística se mantiene.",
+    "19 de diciembre, cerca del mediodía. Lugar confirmado. Los años pasan, la mística se mantiene.",
   openGraph: {
     title: "420 · Edición 2026",
     description:
@@ -37,7 +37,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "420 · Edición 2026",
     description:
-      "19 de diciembre. Lugar a confirmar. La mística no se confirma: se sostiene.",
+      "19 de diciembre. El lugar se confirmó. La mística no se confirma: se sostiene.",
     images: ["/logo.png"],
   },
 };

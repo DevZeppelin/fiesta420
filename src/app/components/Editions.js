@@ -13,7 +13,7 @@ const EDICIONES = [
   },
   {
     año: "2026",
-    lugar: "Lugar a confirmar",
+    lugar: "Quincho cerrado y pileta",
     nota: "Se nota que se trabajó en actualizar esto a la edición 2026.",
     estado: "en curso",
   },

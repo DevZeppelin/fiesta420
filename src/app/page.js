@@ -4,12 +4,13 @@ import Reveal from "./components/Reveal";
 import SecretStash from "./components/SecretStash";
 import Sponsors from "./components/Sponsors";
 import Editions from "./components/Editions";
+import Location from "./components/Location";
 
 const REGLAMENTO = [
   "Pague su cuota a tiempo. La integridad de la fiesta depende de ello, y usted lo sabe.",
   "Vaya señando. El que seña temprano duerme tranquilo; el que seña tarde duerme en la ofi del super (ya saben cual).",
   "Espere al 19 para compartir el día. Los años pasan, la mística se mantiene. ¡Que no se muera!",
-  "El lugar se confirma cuando se confirma. No insista.",
+  "El lugar ya se confirmó. No pregunte más por el grupo: está todo acá.",
 ];
 
 export default function Home() {
@@ -54,6 +55,11 @@ export default function Home() {
         </a>
       </header>
 
+      {/* ---------- LUGAR ---------- */}
+      <Reveal as="section" id="lugar" className="w-full scroll-mt-16">
+        <Location />
+      </Reveal>
+
       {/* ---------- REGLAMENTO ---------- */}
       <Reveal
         as="section"
@@ -87,28 +93,6 @@ export default function Home() {
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
           el león sigue mirando quién seña y quién no
         </p>
-      </Reveal>
-
-      {/* ---------- LUGAR ---------- */}
-      <Reveal as="section" className="flex w-full max-w-xl flex-col items-center gap-4 text-center">
-        <h2 className="text-2xl uppercase text-white">El lugar</h2>
-        <div className="w-full rounded-3xl border border-white/10 bg-white/[0.02] p-8">
-          <p className="font-mono text-4xl tracking-tight">
-            <span className="redacted">████████ ███ █████</span>
-          </p>
-          <p className="mt-4 font-mono text-sm text-white/55">
-            A confirmar. Estamos entre tres lugares y ninguno nos quiere echar
-            todavía (porque no nos conocen), así que vamos bien.
-          </p>
-          <p className="mt-2 font-mono text-xs text-white/35">
-            Coordenadas exactas llegan por el grupo, como siempre, a horario
-            argentino.
-          </p>
-          <p className="mt-2 font-mono text-xs text-white/35">
-            Cita bíblica del día: &laquo;No vomitaráis ni te golpearáis la cabeza
-            con el fondo de la pileta&raquo; <i>Derly 16. 14:28</i>
-          </p>
-        </div>
       </Reveal>
 
       {/* ---------- MATERIAL RESERVADO ---------- */}
@@ -152,12 +136,10 @@ export default function Home() {
         </p>
         <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <a
-            href="https://share.google/mSVZCVTKSGBqapXt1"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#lugar"
             className="w-full rounded-full border border-white/15 px-6 py-3 font-mono text-sm uppercase tracking-wider transition hover:border-acid hover:text-acid sm:w-auto"
           >
-            Ver zona (aprox.)
+            Ver ubicación
           </a>
           <span className="font-mono text-xs text-white/40">
             alias: <span className="text-white/70">ianc70.uala</span>
